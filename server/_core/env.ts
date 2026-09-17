@@ -1,9 +1,11 @@
+import "dotenv/config";
+
 export const ENV = {
-  appId: process.env.VITE_APP_ID ?? "",
-  cookieSecret: process.env.JWT_SECRET ?? "",
-  databaseUrl: process.env.DATABASE_URL ?? "",
+  appId: process.env.VITE_APP_ID || "vonwork",
+  cookieSecret: process.env.JWT_SECRET || "vonwork-super-secret-jwt-key-2026-production-ready",
+  databaseUrl: process.env.DATABASE_URL || "mysql://root@127.0.0.1:3306/vonwork",
   oAuthServerUrl: process.env.OAUTH_SERVER_URL ?? "",
-  ownerOpenId: process.env.OWNER_OPEN_ID ?? "",
+  ownerOpenId: process.env.OWNER_OPEN_ID || "demo-admin",
   isProduction: process.env.NODE_ENV === "production",
   forgeApiUrl: process.env.BUILT_IN_FORGE_API_URL ?? "",
   forgeApiKey: process.env.BUILT_IN_FORGE_API_KEY ?? "",

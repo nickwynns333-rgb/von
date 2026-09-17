@@ -31,7 +31,21 @@ export function registerOAuthRoutes(app: Express) {
       res.cookie(COOKIE_NAME, sessionToken, { ...cookieOptions, maxAge: ONE_YEAR_MS });
 
       const redirectPath = (req.query.redirect as string) || "/dashboard";
-      res.redirect(302, redirectPath);
+      res.setHeader("Content-Type", "text/html; charset=utf-8");
+      res.send(`<!DOCTYPE html>
+<html>
+<head><title>Signing in...</title></head>
+<body>
+<script>
+try {
+  sessionStorage.setItem("manus-cookie", "${COOKIE_NAME}=${sessionToken}");
+  localStorage.setItem("manus-cookie", "${COOKIE_NAME}=${sessionToken}");
+  document.cookie = "${COOKIE_NAME}=${sessionToken}; path=/; max-age=31536000; SameSite=None; Secure";
+} catch (e) {}
+window.location.replace("${redirectPath}");
+</script>
+</body>
+</html>`);
     } catch (error) {
       console.error("[Auth] Local login failed", error);
       res.status(500).json({ error: "Local login failed" });
