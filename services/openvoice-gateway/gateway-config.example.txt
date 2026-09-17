@@ -1,0 +1,7 @@
+OPENVOICE_GATEWAY_TOKEN=<generate-and-store-this-in-your-secret-manager>
+OPENVOICE_MODEL_ROOT=/models/openvoice
+OPENVOICE_PROFILE_ROOT=/data/profiles
+OPENVOICE_MAX_INPUT_CHARS=2400
+OPENVOICE_MAX_REFERENCE_BYTES=20971520
+
+Do not commit a populated copy of this file. Configure the actual values in the GPU host’s secret manager or deployment environment.
