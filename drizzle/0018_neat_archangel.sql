@@ -1,0 +1,1 @@
+ALTER TABLE `business_brains` ADD `agentId` int;
